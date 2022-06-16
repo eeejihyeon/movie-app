@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import View from "../components/View";
 
 function Detail() {
   const [loading, setLoading] = useState(true);
@@ -23,20 +24,16 @@ function Detail() {
         <h2>Loading...</h2>
       ) : (
         <div>
-          <h1>Movie Detail</h1>
-          <img src={movie.medium_cover_image} />;
-          <div>
-            <h2>{movie.title}</h2>
-            <p>Year : {movie.year}</p>
-            <p>Rating : {movie.rating}</p>
-            <p>Runtime : {movie.runtime}</p>
-            <ul>
-              {movie.genres.map((g) => (
-                <li key={g}>{g}</li>
-              ))}
-            </ul>
-            <p>Description : {movie.description_full}</p>
-          </div>
+          <View
+            key={movie.id}
+            coverImg={movie.medium_cover_image}
+            title={movie.title}
+            year={movie.year}
+            rating={movie.rating}
+            runtime={movie.runtime}
+            genres={movie.genres}
+            desc={movie.description_full}
+          />
         </div>
       )}
     </div>
